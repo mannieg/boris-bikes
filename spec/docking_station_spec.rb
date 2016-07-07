@@ -7,4 +7,16 @@ describe DockingStation do
     bike = subject.release_bike
     expect(bike).to be_working
   end
+
+  it { is_expected.to respond_to(:dock).with(1).arguments}
+
+  it { is_expected.to respond_to(:bike) }
+
+  it 'return a bike' do
+    bike = Bike.new
+    subject.dock(bike)
+    expect(subject.bike).to be_kind_of(Bike)
+  end
+  #it {expect(subject.return_bike).to be_kind_of(bike)}
+
 end
