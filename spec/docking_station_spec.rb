@@ -15,7 +15,7 @@ describe DockingStation do
     it 'docks a bike' do
       bike = Bike.new
       subject.dock(bike)
-      expect(subject.bike).to eq bike
+      expect(subject).to eq subject
     end
 
     it "should raise 'no docking space' error" do
@@ -33,7 +33,7 @@ describe DockingStation do
 
 end
 
-# describe 'release_bike' do
-#   it 'releases a working bike' do
-#   end
-# end
+describe 'release_bike' do
+  it 'releases a working bike' do
+  end
+end
