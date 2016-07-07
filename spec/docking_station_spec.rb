@@ -21,10 +21,20 @@ describe DockingStation do
 
   it { is_expected.to respond_to(:bike) }
 
-  it 'return a bike' do
-    bike = Bike.new
-    subject.dock(bike)
-    expect(subject.bike).to be_kind_of(Bike)
+  describe '#dock' do
+    it 'return a bike' do
+      bike = Bike.new
+      subject.dock(bike)
+      expect(subject.bike).to be_kind_of(Bike)
+    end
+  end
+
+  describe '#dock' do
+    it 'raises an error when more than one bike is docked' do
+      bike = Bike.new
+      subject.dock(bike)
+      expect { subject.dock(Bike.new)}.to raise_error 'Docking Station full'
+    end
   end
 
 #  it { expect(subject.release_bike).to raise_error("Sorry no bike is available!") }
