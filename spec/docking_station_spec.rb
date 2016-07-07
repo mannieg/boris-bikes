@@ -2,8 +2,12 @@ require 'docking_station'
 
 describe DockingStation do
   it {is_expected.to respond_to :release_bike}
+  it "should raise 'no bike error'" do
+    @bike = nil
+    expect{subject.release_bike}.to raise_error "bikes not available"
+  end
   it 'checks bike is working?' do
-    bike = subject.release_bike
+    bike = Bike.new
     expect(bike).to be_working
   end
   it { is_expected.to respond_to(:dock).with(1).argument }
