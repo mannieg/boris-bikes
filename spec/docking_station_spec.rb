@@ -1,4 +1,5 @@
 require 'docking_station'
+require 'bike'
 
 describe DockingStation do
   it {is_expected.to respond_to :release_bike}
@@ -10,7 +11,7 @@ describe DockingStation do
     end
   end
 
-  describe '#dock(bike)' do
+  describe '#dock' do
     it 'docks a bike' do
       bike = Bike.new
       subject.dock(bike)
@@ -18,10 +19,8 @@ describe DockingStation do
     end
 
     it "should raise 'no docking space' error" do
-      bike1 = Bike.new
-      subject.dock(bike1)
-      bike2 = Bike.new
-      expect{subject.dock(bike2)}.to raise_error "Docking station is full!"
+      subject.dock(Bike.new)
+      expect{ subject.dock(Bike.new) }.to raise_error "Station is full!"
     end
   end
 
