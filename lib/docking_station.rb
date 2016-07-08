@@ -7,7 +7,7 @@ class DockingStation
 
   attr_reader :bikes
   def release_bike
-    if @bikes = []
+    if @bikes == []
       fail "bikes not available"
       @bikes.pop
     end
