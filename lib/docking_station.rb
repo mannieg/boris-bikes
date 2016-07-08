@@ -12,12 +12,12 @@ class DockingStation
   end
 
   def release_bike
-    fail "bikes not available" if empty?
-    @bikes.pop
+    return_unbroken_bike
   end
 
-  def dock(bike)
+  def dock(bike, broken = false)
       fail "Station is full!" if full?
+      bike.is_broken = broken
       @bikes << bike
   end
 
@@ -32,4 +32,12 @@ class DockingStation
     def empty?
       @bikes.empty?
     end
+
+    def return_unbroken_bike
+      @bikes.each do |bike|
+        return bike unless bike.is_broken
+      end
+      fail "bikes not available"
+    end
+
 end
