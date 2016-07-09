@@ -17,7 +17,7 @@ class DockingStation
 
   def dock(bike, broken = false)
       fail "Station is full!" if full?
-      bike.is_broken = broken
+      bike.is_broken = broken # Maybe implementation change so user can call direcly from Bikes class instead
       @bikes << bike
   end
 
@@ -34,9 +34,7 @@ class DockingStation
     end
 
     def return_unbroken_bike
-      @bikes.each do |bike|
-        return bike unless bike.is_broken
-      end
+      @bikes.each { |bike| return bike unless bike.is_broken }
       fail "bikes not available"
     end
 
