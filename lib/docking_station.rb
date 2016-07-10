@@ -12,12 +12,12 @@ class DockingStation
   end
 
   def release_bike
-    return_unbroken_bike
+    @bikes.each_with_index { |bike, i| return bikes.slice!(i) unless bike.is_broken }
+    fail "bikes not available"
   end
 
-  def dock(bike, broken = false)
+  def dock(bike)
       fail "Station is full!" if full?
-      bike.is_broken = broken
       @bikes << bike
   end
 
@@ -31,11 +31,6 @@ class DockingStation
 
     def empty?
       @bikes.empty?
-    end
-
-    def return_unbroken_bike
-      @bikes.each_with_index { |bike, i| return bikes.slice!(i) unless bike.is_broken }
-      fail "bikes not available"
     end
 
 end
